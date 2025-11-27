@@ -1,20 +1,28 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware # <--- NEW IMPORT
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from logic import QueueSystem
+import joblib # <--- NEW IMPORT
+import os
 
 app = FastAPI()
 
-# <--- NEW: ALLOW REACT TO TALK TO PYTHON --->
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins (good for development)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 queue_system = QueueSystem()
+
+# <--- LOAD THE AI MODEL --->
+# We check if the file exists first to avoid errors
+if os.path.exists("wait_time_model.pkl"):
+    ai_model = joblib.load("wait_time_model.pkl")
+else:
+    ai_model = None
 
 class CustomerInput(BaseModel):
     name: str
@@ -25,7 +33,24 @@ def home():
 
 @app.post("/join")
 def join_queue(data: CustomerInput):
-    return queue_system.add_customer(data.name)
+    ticket = queue_system.add_customer(data.name)
+    
+    # <--- CALCULATE AI PREDICTION --->
+    prediction = 0
+    if ai_model:
+        # Count people waiting (minus the one we just added)
+        count = queue_system.get_queue_length() - 1
+        if count < 0: count = 0
+        
+        # Ask the AI
+        prediction = ai_model.predict([[count]])[0]
+        prediction = round(prediction)
+    
+    # <--- THE FIX: Add the time DIRECTLY to the ticket --->
+    ticket["estimated_wait_minutes"] = prediction
+    
+    # Return the simple ticket (Frontend will be happy now)
+    return ticket
 
 @app.post("/next")
 def call_next():
