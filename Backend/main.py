@@ -1,8 +1,19 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware # <--- NEW IMPORT
 from pydantic import BaseModel
 from logic import QueueSystem
 
 app = FastAPI()
+
+# <--- NEW: ALLOW REACT TO TALK TO PYTHON --->
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (good for development)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 queue_system = QueueSystem()
 
 class CustomerInput(BaseModel):
@@ -10,7 +21,7 @@ class CustomerInput(BaseModel):
 
 @app.get("/")
 def home():
-    return {"message": "Queue System Online (MongoDB Connected)"}
+    return {"message": "Queue System Online"}
 
 @app.post("/join")
 def join_queue(data: CustomerInput):
