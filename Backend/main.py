@@ -10,7 +10,7 @@ class CustomerInput(BaseModel):
 
 @app.get("/")
 def home():
-    return {"message": "Queue System Online"}  # <--- Note the new message!
+    return {"message": "Queue System Online (MongoDB Connected)"}
 
 @app.post("/join")
 def join_queue(data: CustomerInput):
@@ -26,6 +26,6 @@ def call_next():
 @app.get("/status")
 def check_status():
     return {
-        "waiting": len(queue_system.queue),
-        "serving": queue_system.currently_serving
+        "waiting_count": queue_system.get_queue_length(),
+        "message": "System Active"
     }
