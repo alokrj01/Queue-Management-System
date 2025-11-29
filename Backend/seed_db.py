@@ -3,7 +3,7 @@ import random
 import datetime
 
 # 1. Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb+srv://vikashkumar9504168773:Queue1234@cluster1.brit6sy.mongodb.net/?appName=Cluster1")
 db = client["queue_db"]
 collection = db["tickets"]
 

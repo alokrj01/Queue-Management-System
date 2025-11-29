@@ -59,6 +59,23 @@ def call_next():
         return {"message": "No one is waiting!"}
     return {"message": "Now serving", "person": person}
 
+@app.post("/skip")
+def skip_customer():
+    person = queue_system.skip_next()
+    if person is None:
+        return {"message": "No one is waiting to skip!"}
+    return {"message": "Skipped customer", "person": person}
+@app.get("/skipped")
+def get_skipped_list():
+    return queue_system.get_skipped()
+
+@app.post("/recall/{ticket_id}")
+def recall_customer(ticket_id: str):
+    person = queue_system.recall_customer(ticket_id)
+    if person is None:
+        return {"message": "Customer not found"}
+    return {"message": "Recalling customer", "person": person}
+
 @app.get("/status")
 def check_status():
     return {
