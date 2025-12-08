@@ -1,0 +1,299 @@
+/* --- Global Styles & Full-Screen Background --- */
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden; /* Prevent scrollbars from background elements */
+}
+
+.outer-container-behance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    /* This creates the smooth, blurry gradient background */
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(240, 230, 250, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 217, 204, 0.7) 0%, transparent 50%),
+        linear-gradient(135deg, #f8f0ff 0%, #fefefe 50%, #fff0e6 100%);
+    background-size: 200% 200%; /* Make gradients larger to create smooth blobs */
+    background-position: center center;
+    background-attachment: fixed;
+    animation: backgroundShift 20s ease infinite alternate; /* Subtle animation */
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* --- Main Card (The Central Interface Element) --- */
+.app-main-card-behance {
+    background: #ffffff;
+    border-radius: 35px; /* Highly rounded corners */
+    padding: 40px 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset; 
+    width: 100%;
+    max-width: 400px; 
+    transition: all 0.3s ease-in-out;
+    position: relative; /* For view toggle absolute positioning */
+}
+
+
+/* --- Header / Logo Area --- */
+.header-queue {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.queue-logo {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #8a63d2; /* Soft purple brand color */
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.queue-slogan {
+    font-size: 0.9em;
+    color: #4f4f6d;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* --- Input Fields --- */
+.input-queue {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    background-color: #f7f7f9; /* Off-white input background */
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: #333;
+    transition: box-shadow 0.2s;
+}
+
+.input-queue::placeholder {
+    color: #b0b0c0;
+}
+
+.input-queue:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(138, 99, 210, 0.2); /* Soft purple focus ring */
+}
+
+/* --- Primary Buttons --- */
+.btn-queue {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+    display: flex; /* For icons */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-queue:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Specific Button Styles */
+.btn-primary-black { /* Login button */
+    background-color: #000000;
+    color: white;
+}
+.btn-primary-black:hover:not(:disabled) {
+    background-color: #333333;
+}
+
+.btn-accent-green { /* Next button */
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+.btn-accent-green:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.btn-accent-purple { /* Generate Ticket */
+    background-color: #8a63d2; /* Purple Accent */
+    color: white;
+}
+.btn-accent-purple:hover:not(:disabled) {
+    background-color: #6a44b3;
+}
+
+.btn-secondary-grey { /* Absent / Clear Ticket */
+    background-color: #e0e0e0;
+    color: #444;
+    font-weight: 500;
+}
+.btn-secondary-grey:hover:not(:disabled) {
+    background-color: #cccccc;
+}
+
+/* Logout Button */
+.btn-logout-queue {
+    position: absolute; /* Position relative to .header-queue */
+    top: 10px;
+    right: 10px;
+    background: #fde8e8;
+    color: #d32f2f;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-logout-queue:hover {
+    background-color: #fbdada;
+}
+
+
+/* --- Login Links --- */
+.login-links-queue {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.link-queue {
+    color: #8a63d2; 
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0 10px;
+    transition: color 0.2s;
+}
+
+.link-queue:hover {
+    color: #6a44b3;
+}
+
+.link-separator-queue {
+    color: #d0d0d0;
+}
+
+/* --- View Toggle --- */
+.view-toggle-queue {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px; /* Space below toggle */
+    background: #f7f7f9;
+    border-radius: 12px;
+    padding: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.view-toggle-queue button {
+    flex: 1; /* Distribute space evenly */
+    padding: 10px 0; /* Adjust padding for full width */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: #6c758e;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-size: 0.9em;
+}
+
+.view-toggle-queue button.toggle-active {
+    background: #8a63d2; 
+    color: white;
+    box-shadow: 0 2px 5px rgba(138, 99, 210, 0.3);
+}
+
+/* --- Staff Controls / Status Cards --- */
+
+/* Status Display */
+.status-card-queue {
+    background: #e9f0ff; 
+    border-radius: 15px;
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.status-label-queue {
+    font-size: 0.85em;
+    color: #495d82;
+    margin-bottom: 5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.status-number-large-queue {
+    font-size: 4.5em; 
+    font-weight: 800;
+    color: #8a63d2; /* Purple Accent */
+    line-height: 1;
+}
+
+/* Now Serving Card */
+.serving-card-queue {
+    background: #f7f9fc; 
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    border: 1px solid #e0e6f0;
+}
+
+.serving-label-queue {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #929fb0;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.serving-name-queue {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1f304f;
+    margin: 0;
+}
+
+.serving-token-queue {
+    font-size: 0.9em;
+    color: #929fb0;
+    margin-top: 5px;
+}
+
+/* Staff Controls Layout */
+.staff-controls-queue {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Visitor Ticket Display */
+.ticket-display-queue-visitor {
+    padding: 20px;
+    border: 2px dashed #8a63d2;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4f4f6d;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.ticket-value-highlight {
+    font-weight: 700;
+    color: #8a63d2;
+    font-size: 1.1em;
+}
