@@ -53,34 +53,34 @@ Follow these steps to set up the project on your local machine.
 
 ### 1. Clone the Repository
 ```bash
-git clone (https://github.com/alokrj01/Queue-Management-System)
+git clone https://github.com/alokrj01/Queue-Management-System
 cd Queue-Management
 ```
 
 ### 2. Install Dependencies
 ```bash
-[pip install -r requirements.txt](pip install -r requirements.txt)
+pip install -r requirements.txt
 ```
 
 ### 3. Configure the Queue Zone (One-Time Setup)
 
 Run the admin tool to define where the queue is located in your camera frame.
 ```bash
-[python setup_zone.py](python setup_zone.py)
+python setup_zone.py
 ```
 
 Click 4 points on the camera window to draw the polygon and press 'q' to save.
 
 after that, run command;
 ```bash
-[python main.py](python main.py)
+python main.py
 ```
 
 ### 4. Run the Dashboard
 
 Launch the web application.
 ```bash
-[streamlit run dashboard.py](streamlit run dashboard.py)
+streamlit run dashboard.py
 ```
 
 ## 🧠 Technical Challenges Solved
