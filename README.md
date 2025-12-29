@@ -53,8 +53,8 @@ Follow these steps to set up the project on your local machine.
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/alokrj01/Queue-Management-System](https://github.com/alokrj01/Queue-Management-System)
-cd Queue-Management-System
+git clone (https://github.com/alokrj01/Queue-Management-System)
+cd Queue-Management
 ```
 
 ### 2. Install Dependencies
