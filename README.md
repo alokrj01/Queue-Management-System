@@ -16,7 +16,7 @@
 
 **A privacy-focused Edge AI solution designed to monitor queues, calculate average wait times, and optimize service efficiency without sending video feeds to the cloud.**
 
-[View Demo Video](YOUR_YOUTUBE_LINK_HERE) • [Report Bug](YOUR_GITHUB_ISSUES_LINK) • [Request Feature](YOUR_GITHUB_ISSUES_LINK)
+[View Demo Video](YOUR_YOUTUBE_LINK_HERE) • [Report Bug](https://github.com/alokrj01/Queue-Management-System/issues) • [Request Feature](https://github.com/alokrj01/Queue-Management-System/issues)
 
 </div>
 
