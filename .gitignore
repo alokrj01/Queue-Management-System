@@ -1,0 +1,5 @@
+#python general
+__pycache__/
+
+#virtual env
+myenv/
