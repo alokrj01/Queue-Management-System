@@ -63,36 +63,38 @@ cd Queue-Management-System
 ```
 
 ### 3. Configure the Queue Zone (One-Time Setup)
-```bash
+
 Run the admin tool to define where the queue is located in your camera frame.
+```bash
 [python setup_zone.py](python setup_zone.py)
+```
 
 Click 4 points on the camera window to draw the polygon and press 'q' to save.
 
 after that, run command;
+```bash
 [python main.py](python main.py)
 ```
 
 ### 4. Run the Dashboard
-```bash
+
 Launch the web application.
+```bash
 [streamlit run dashboard.py](streamlit run dashboard.py)
 ```
 
-```bash
-🧠 Technical Challenges Solved
+## 🧠 Technical Challenges Solved
 1. The "Camera Angle" Problem
 Challenge: Every CCTV camera is installed at a different height and angle. Hardcoding coordinates (e.g., x=100, y=200) made the code fail on new cameras. Solution: I built a generic setup_zone.py tool. It captures mouse clicks to generate a custom polygon and saves it to a config.json file. The main system reads this file dynamically, making the software Plug-and-Play.
 
 2. Occlusion & ID Switching
 Challenge: In crowded lines, people hide behind each other, causing the detector to lose them and reset their timer. Solution: Implemented Object Tracking (persist=True) logic and optimized the confidence threshold. I also added a memory buffer that retains a person's ID for a few frames even if detection flickers.
 
-🔮 Future Improvements
-[ ] Integration with SQL Database for historical reporting.
+### 🔮 Future Improvements
+[1] Integration with SQL Database for historical reporting.
 
-[ ] Add SMS/WhatsApp Alerts if wait time exceeds 10 minutes.
+[2] Add SMS/WhatsApp Alerts if wait time exceeds 10 minutes.
 
-[ ] Deploy on NVIDIA Jetson Nano for standalone edge device usage.
-```
+[3] Deploy on NVIDIA Jetson Nano for standalone edge device usage.
 
 <div align="center"> Made with ❤️ by Alok Ranjan </div>
